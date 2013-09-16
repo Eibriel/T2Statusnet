@@ -42,7 +42,7 @@ def read_from_twitter():
         file.close()
         print('Last tweet:',last_tweet)
         print('type of last_tweet:',type(last_tweet))
-        twits = twitter.statuses.user_timeline(id=T_user,count = 5)
+        twits = twitter.statuses.user_timeline(id=T_user,count = 20)
         for i in twits:
             if i['id_str'] == last_tweet :
                 last_tweet_id = twits.index(i)
