@@ -19,3 +19,8 @@ You can compile them from source code:
 Requests:	http://docs.python-requests.org/en/latest/user/install/#get-the-code
 
 twitter:	https://pypi.python.org/pypi/twitter/1.10.0
+
+Config
+-----------
+
+Open run.py and set: S_user to your statusnet user name, S_pass to your statusnet password and T_user to your twitter username
