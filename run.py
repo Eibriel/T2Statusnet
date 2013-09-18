@@ -6,11 +6,11 @@ import requests,os
 #
 
 # Stausnet(Gnusocial) user/password here:
-S_user = 'rayeshman'
-S_pass = 'h2010nh2010n1'
+S_user = ''
+S_pass = ''
 
 # Twitter user name
-T_user = 'rayeshman'
+T_user = ''
 
 def send_to_statusnet(S_msg):
     params = {'status' : S_msg.encode('utf-8')}
