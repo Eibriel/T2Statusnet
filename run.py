@@ -6,11 +6,11 @@ import requests,os
 #
 
 # Stausnet(Gnusocial) user/password here:
-S_user = 'USER'
-S_pass = 'PASS'
+S_user = 'rayeshman'
+S_pass = 'h2010nh2010n1'
 
 # Twitter user name
-T_user = 'USER'
+T_user = 'rayeshman'
 
 def send_to_statusnet(S_msg):
     params = {'status' : S_msg.encode('utf-8')}
@@ -20,7 +20,7 @@ def send_to_statusnet(S_msg):
 # {'in_reply_to_user_id': None, 'created_at': 'Sun Sep 15 09:53:35 +0200 2013', 'in_reply_to_status_id': None, 'geo': None, 'user': {'protected': False, 'time_zone': 'Iran', 'following': True, 'profile_image_url_profile_size': 'http://quitter.se/avatar/114829-96-20130726162743.png', 'screen_name': 'rayeshman', 'followers_count': 18, 'location': 'Iran', 'statusnet_blocking': False, 'url': None, 'name': 'Hossein Rayeshman', 'created_at': 'Thu Jul 18 20:30:26 +0200 2013', 'statusnet_profile_url': 'http://quitter.se/rayeshman', 'id': 114829, 'utc_offset': '16200', 'friends_count': 23, 'notifications': True, 'profile_image_url_original': 'http://quitter.se/avatar/114829-480-20130726162742.png', 'description': None, 'groups_count': 6, 'favourites_count': 10, 'profile_image_url': 'http://quitter.se/avatar/114829-48-20130726162743.png', 'statuses_count': 302}, 'text': 'Another test!', 'in_reply_to_screen_name': None, 'truncated': False, 'repeated': False, 'favorited': False, 'source': 'api', 'uri': 'http://quitter.se/notice/2142154', 'statusnet_conversation_id': 1916333, 'statusnet_html': 'Another test!', 'id': 2142154}
 
 def read_from_twitter():
-    consumer_key  = 'Woy1uni80jmsrmlXZ81ZOw'
+    consumer_key = 'Woy1uni80jmsrmlXZ81ZOw'
     consumer_secret = 'MQcRt1Nl80MVtgrWbv25pWunYcurnNdXwgOTuiZe91A'
     my_twitter_creds = os.path.expanduser('~/.T2Statusnetauth')
     if not os.path.exists(my_twitter_creds):
@@ -47,6 +47,9 @@ def read_from_twitter():
             if i['id_str'] == last_tweet :
                 last_tweet_id = twits.index(i)
                 print("last tweet index:",last_tweet_id)
+                check_twitter()
+
+def check_twitter():
     if last_tweet_id != 0 :
         for i in range(last_tweet_id):
             print(twits[i]['text'])
