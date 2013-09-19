@@ -47,14 +47,20 @@ def read_from_twitter():
 
     if not os.path.exists(savefile):
         # Writes last Id_str on savefile on first run
-        twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
+        if Friend :
+            twits = twitter.statuses.friend_timeline(id=T_acc,count = 1)
+        else:
+            twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
         file = open(savefile , 'w')
         file.write(twits[0]['id_str'])
         file.close()
         print('No New tweet to send to statusnet!(maybe this is your first run of this app you can send a tweet and then run this script again!)')
     else:
         # Read last Id_str
-        twits = twitter.statuses.user_timeline(id=T_acc,count = 30)
+        if Friend :
+            twits = twitter.statuses.friend_timeline(id=T_acc,count = 30)
+        else:
+            twits = twitter.statuses.user_timeline(id=T_acc,count = 30)
         file = open(savefile , 'r')
         last_tweet = file.read()
         file.close()
@@ -73,11 +79,17 @@ def read_from_twitter():
             file.write(twits[0]['id_str'])
             file.close()
         except:
-            twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
+            if Friend :
+                twits = twitter.statuses.friend_timeline(id=T_acc,count = 1)
+            else:
+                twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
             statuses_count = twits[0]['user']['statuses_count']
             print('This script is going to download all of your tweets because it cant find your last tweet which has sent to status net.)')
             print('Wait please ...')
-            twits = twitter.statuses.user_timeline(id=T_acc,count = statuses_count)
+            if Friend :
+                twits = twitter.statuses.friend_timeline(id=T_acc,count = statuses_count)
+            else:
+                twits = twitter.statuses.user_timeline(id=T_acc,count = statuses_count)
             for i in twits:
                 if i['id_str'] == last_tweet : # last_tweet and i['id_str'] are strings.
                     last_tweet_id = twits.index(i)
