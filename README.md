@@ -22,5 +22,11 @@ twitter:	https://pypi.python.org/pypi/twitter/1.10.0
 
 Config
 -----------
+Open T2statusnet.conf and set its values.
 
-Open run.py and set: S_user to your statusnet user name, S_pass to your statusnet password and T_user to your twitter username
+Licence
+-----------
+The MIT License (MIT) Copyright (c) 2013 Rayeshman
+For more information, See Licence:
+
+https://raw.github.com/rayeshman/T2Statusnet/master/LICENSE
