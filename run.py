@@ -4,7 +4,7 @@ import requests,os
 
 def setting():
     #Set values of some variable.
-    global consumer_key ,consumer_secret ,my_twitter_creds ,T_acc ,Friend ,T_user ,S_user ,S_pass ,oauth_token ,oauth_secret ,savefile 
+    global consumer_key ,consumer_secret ,my_twitter_creds ,T_acc ,Friend ,T_user ,S_user ,S_pass ,oauth_token ,oauth_secret ,savefile
     consumer_key = 'Woy1uni80jmsrmlXZ81ZOw'
     consumer_secret = 'MQcRt1Nl80MVtgrWbv25pWunYcurnNdXwgOTuiZe91A'
     my_twitter_creds = os.path.expanduser('~/.T2Statusnetauth')
@@ -20,12 +20,12 @@ def setting():
     print('S User :',conf[conf.index('S_user')+1])
     print('#################')
     # Sets T2Statusnet.conf values
-    T_acc  = conf[conf.index('T_acc')+1]
+    T_acc = conf[conf.index('T_acc')+1]
     Friend = conf[conf.index('Friend')+1]
     T_user = conf[conf.index('T_user')+1]
     S_user = conf[conf.index('S_user')+1]
     S_pass = conf[conf.index('S_pass')+1]
-    # will ask Oauth permission on the first run 
+    # will ask Oauth permission on the first run
     if not os.path.exists(my_twitter_creds):
         oauth_dance("T2Statusnet", consumer_key, consumer_secret,my_twitter_creds)
 
@@ -47,20 +47,14 @@ def read_from_twitter():
 
     if not os.path.exists(savefile):
         # Writes last Id_str on savefile on first run
-        if Friend :
-            twits = twitter.statuses.friend_timeline(id=T_acc,count = 1)
-        else:
-            twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
+        twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
         file = open(savefile , 'w')
         file.write(twits[0]['id_str'])
         file.close()
         print('No New tweet to send to statusnet!(maybe this is your first run of this app you can send a tweet and then run this script again!)')
     else:
         # Read last Id_str
-        if Friend :
-            twits = twitter.statuses.friend_timeline(id=T_acc,count = 30)
-        else:
-            twits = twitter.statuses.user_timeline(id=T_acc,count = 30)
+        twits = twitter.statuses.user_timeline(id=T_acc,count = 30)
         file = open(savefile , 'r')
         last_tweet = file.read()
         file.close()
@@ -79,17 +73,11 @@ def read_from_twitter():
             file.write(twits[0]['id_str'])
             file.close()
         except:
-            if Friend :
-                twits = twitter.statuses.friend_timeline(id=T_acc,count = 1)
-            else:
-                twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
+            twits = twitter.statuses.user_timeline(id=T_acc,count = 1)
             statuses_count = twits[0]['user']['statuses_count']
             print('This script is going to download all of your tweets because it cant find your last tweet which has sent to status net.)')
             print('Wait please ...')
-            if Friend :
-                twits = twitter.statuses.friend_timeline(id=T_acc,count = statuses_count)
-            else:
-                twits = twitter.statuses.user_timeline(id=T_acc,count = statuses_count)
+            twits = twitter.statuses.user_timeline(id=T_acc,count = statuses_count)
             for i in twits:
                 if i['id_str'] == last_tweet : # last_tweet and i['id_str'] are strings.
                     last_tweet_id = twits.index(i)
