@@ -4,7 +4,7 @@ import requests,os
 
 def setting():
     #Set values of some variable.
-    global consumer_key ,consumer_secret ,my_twitter_creds ,T_acc ,Friend ,T_user ,S_user ,S_conf ,oauth_token ,oauth_secret ,savefile 
+    global consumer_key ,consumer_secret ,my_twitter_creds ,T_acc ,Friend ,T_user ,S_user ,S_pass ,oauth_token ,oauth_secret ,savefile 
     consumer_key = 'Woy1uni80jmsrmlXZ81ZOw'
     consumer_secret = 'MQcRt1Nl80MVtgrWbv25pWunYcurnNdXwgOTuiZe91A'
     my_twitter_creds = os.path.expanduser('~/.T2Statusnetauth')
@@ -24,8 +24,7 @@ def setting():
     Friend = conf[conf.index('Friend')+1]
     T_user = conf[conf.index('T_user')+1]
     S_user = conf[conf.index('S_user')+1]
-    S_conf = conf[conf.index('S_pass')+1]
-
+    S_pass = conf[conf.index('S_pass')+1]
     # will ask Oauth permission on the first run 
     if not os.path.exists(my_twitter_creds):
         oauth_dance("T2Statusnet", consumer_key, consumer_secret,my_twitter_creds)
